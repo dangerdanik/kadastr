@@ -29,6 +29,8 @@
 	
 
 	 yii migrate/to m191114_105231_kadastr_table --migrationPath=modules/kadastr/migrations
+
+5. Перейти в веб приложение http://test/kadastr где test, какой-то используемый тестовый домен.
 =================
 Консольное приложение.
 	
