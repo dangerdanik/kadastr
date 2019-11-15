@@ -1,0 +1,37 @@
+Краткое описание.
+
+1. Скопировать дерикторию modiles если ее нет, или дерикторию kadastr в проект.
+2. В конфигурации Yii в файле config/web.php плдключить модуль - 
+
+ 'kadastr' => [
+                'class' => 'app\modules\kadastr\module',
+            ],
+        
+
+3. В файле config/console.php подключить модуль -
+ 
+'bootstrap' => [
+        
+        'kadastr',
+    ],
+    'modules' => [
+       
+        'kadastr' => [
+            'class' => 'app\modules\kadastr\Module',
+        ],
+    ],
+
+4. Выполнить миграцию.
+
+ yii migrate/to m191114_105231_kadastr_table --migrationPath=modules/kadastr/migrations
+=================
+Консольное приложение.
+
+1. Выпонить yii kadastr/console/index 69:27:0000022:1306,69:27:0000022:1307
+
+для добавления и отображения кадастровых номеров. Номера должны быть указаны без пробела.
+
+=================
+
+Тесты.
+В файлике тест находится Unit тест для запуска в codeception
