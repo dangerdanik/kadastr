@@ -8,45 +8,45 @@ use yii\console\widgets\Table;
 
 class ConsoleController extends \yii\console\Controller
 {
-    public function actionIndex($kc_numbs = 'test')
+    public function actionIndex($kc_numbs = FALSE)
     {
         $model = new Kadastr();
 
-        $kad_num =  explode(",", $kc_numbs);
+        if ($kc_numbs) {
 
-        $Kadastr = new KadastrParse($kad_num);
+            $kad_num = explode(",", $kc_numbs);
 
-       // var_dump($Kadastr->result);
-
-      //  $query = $model->find()->asArray();
-
-        $sql = "SELECT * FROM kadastr";
-
-        $query = $model->findbysql($sql)->asArray()->all();
-
-       // var_dump($query);
-
-        foreach ($query as $key => $val) {
-
-            $cn[$key] = $val['cadastral_number'];
-
-            $address[$key] = $val['address'];
-
-            $price[$key] = $val['price'];
-
-            $area[$key] = $val['area'];
-
+            $Kadastr = new KadastrParse($kad_num);
         }
 
-      //  print_r($cn); //die;
+            $sql = "SELECT * FROM kadastr";
 
-        echo Table::widget([
-            'headers' => ['CN','address', 'price', 'area'],
+            $query = $model->findbysql($sql)->asArray()->all();
 
-            'rows' => [
-                [$cn, $address, $price, $area],
+            // var_dump($query);
 
-            ],
-        ]);
+            foreach ($query as $key => $val) {
+
+                $cn[$key] = $val['cadastral_number'];
+
+                $address[$key] = $val['address'];
+
+                $price[$key] = $val['price'];
+
+                $area[$key] = $val['area'];
+
+            }
+
+            //  print_r($cn); //die;
+
+            echo Table::widget([
+                'headers' => ['CN', 'address', 'price', 'area'],
+
+                'rows' => [
+                    [$cn, $address, $price, $area],
+
+                ],
+            ]);
+
     }
 }
